@@ -9,12 +9,10 @@ SSH_KEY_PUBLIC='/home/mobaxterm/.ssh/id_rsa_all_01.pub'
 
 PROGRAMM_DIR=/home/mobaxterm/_workspace/_projects/rtssh-bash
 BASE_DIR=base-lists
+
 LIST_HOSTNAMES=$PROGRAMM_DIR/$BASE_DIR/.list-hostnames
 LIST_PORTS=$PROGRAMM_DIR/$BASE_DIR/.list-ports
 LIST_PASSWORDS=$PROGRAMM_DIR/$BASE_DIR/.list-passwords.gpg
-
-#BASE_DIR=./base-lists
-#LIST_HOSTNAMES=$BASE_DIR/.list-hostnames
 
 
 if [ ! -f $LIST_HOSTNAMES ]; then
@@ -183,7 +181,6 @@ case "$OPTION" in
                 do
 
                 echo -ne ">>> TRYING PASSWORD $COUNT_PASS_CHECK\r";
-                #echo -ne ">>> TRYING PASSWORD $COUNT_PASS_CHECK $PASSWORD \r";
 
                 (( COUNT_PASS_CHECK-- ));
             
