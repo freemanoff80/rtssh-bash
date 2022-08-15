@@ -12,10 +12,10 @@ For Connecting To A Remote Server Via SSH-Key.
 Create Encrypted Passwords List
 
  - Add passwords in file **base-lists/.list-passwords**
-    Top password on line 1 is default
-    If need create new password for expired old, create it and put in line 2 under default password
+    >Top password on line 1 is default
+    >If need create new password for expired old, create it and put in line 2 under default password
  - Save file **base-lists/.list-passwords**
  - Create encrypted file gpg ( During creation, a master password will be requested for security )
-    **gpg -q -d  base-lists/.list-passwords.gpg**
+    >**gpg -q -d  base-lists/.list-passwords.gpg**
  - Delete unencrypted file
-    **rm -f base-lists/.list-passwords**
+    >**rm -f base-lists/.list-passwords**
