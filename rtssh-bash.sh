@@ -74,7 +74,7 @@ case "$OPTION" in
 
         (( HOST_NUMBER++ ));
 
-        echo ">>> $HOST_NUMBER CONNECT TO $HOST";
+        echo -e "\n### $HOST_NUMBER >>> CONNECT TO -> $HOST";
 
         COUNT=0
         STAGE=1 
@@ -82,8 +82,6 @@ case "$OPTION" in
         while true;
             do
 
-            #echo "===== $COUNT";
-    
             if [ $STAGE = 1 ]; then
     
                 ### Check Hostname in Base List
@@ -224,7 +222,8 @@ case "$OPTION" in
     
                     (( COUNT_PASS_CHECK-- ));
                 
-                    OUTPUT=$( sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'echo' 2>&1 )
+                    #OUTPUT=$( sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'echo' 2>&1 )
+                    OUTPUT=$( sshpass -p $PASSWORD ssh -q -o StrictHostKeyChecking=no -p $PORT $USERNAME@$HOST 'echo' 2>&1 )
                     RESULT=$?;
                 
                     if [ $RESULT -eq 0 ]; then
@@ -342,7 +341,7 @@ case "$OPTION" in
     ### Option Help
     '-h' | '--help' | 'help' )
 
-    echo -e "Usage: $0 <option> <hostname>
+    echo -e "Usage: $0 <option> <hostname>|<hosts-list> <command>
             \rOptions:
             \r\t-c, --connect, conn     Connect to host
             \r\t-h, --help, help        This help"
