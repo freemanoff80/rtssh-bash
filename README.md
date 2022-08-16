@@ -16,6 +16,8 @@ Create Encrypted Passwords List
    - If need create new password for expired old, create it and put in line 2 under default password.
  - Save file **base-lists/.list-passwords**
  - Create encrypted file gpg ( During creation, a master password will be requested for security )
-   - **gpg -q -d  base-lists/.list-passwords.gpg**
+   - **gpg -c .base_lists/.list-passwords**
+ - Сheck that the file **base-lists/.list-passwords.gpg** has been created
+   - **ls -la base-lists | grep gpg**
  - Delete unencrypted file
    - **rm -f base-lists/.list-passwords**
