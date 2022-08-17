@@ -280,7 +280,7 @@ case "$OPTION" in
                                                 send "'$PASSWORD_NEW'\r"
                                                 exp_continue
                                             }
-                                            -re "Retype new password:|new password again:" {
+                                            -re "Retype new password:|new password again:|UNIX password:" {
                                                 send "'$PASSWORD_NEW'\r"
                                                 exp_continue
                                             }
