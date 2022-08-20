@@ -7,7 +7,7 @@ OPTION=$1
 SSH_KEY_PRIVAT='/home/mobaxterm/.ssh/id_rsa_all_01'
 SSH_KEY_PUBLIC='/home/mobaxterm/.ssh/id_rsa_all_01.pub'
 
-PROGRAMM_DIR=/home/mobaxterm/_workspace/_projects/rtssh-bash
+PROGRAMM_DIR=$(pwd)
 BASE_DIR=base-lists
 
 LIST_HOSTNAMES=$PROGRAMM_DIR/$BASE_DIR/.list-hostnames
@@ -15,18 +15,36 @@ LIST_PORTS=$PROGRAMM_DIR/$BASE_DIR/.list-ports
 LIST_PASSWORDS=$PROGRAMM_DIR/$BASE_DIR/.list-passwords.gpg
 
 
-if [ ! -f $LIST_HOSTNAMES ]; then
-    touch $LIST_HOSTNAMES
-fi
+### Check Exist Files
 
-if [ ! -f $LIST_PORTS ]; then
-    echo "!!! LIST $LIST_PORTS NOT EXIST";
-    exit 0;
-fi
+FILE_NOT_EXIST_COUNT=0
 
-if [ ! -f $LIST_PASSWORDS ]; then
-    echo "!!! LIST $LIST_PASSWORDS NOT EXIST";
+for FILE in $SSH_KEY_PRIVAT $SSH_KEY_PUBLIC $LIST_HOSTNAMES $LIST_PORTS $LIST_PASSWORDS ;
+    do
+    
+        if [ ! -f $FILE ]; then
+
+            if [ $FILE = $LIST_HOSTNAMES ]; then
+
+                echo ">>> CREATE FILE $LIST_HOSTNAMES";
+                touch $LIST_HOSTNAMES;
+
+            else
+                
+                echo "!!! FILE $FILE NOT EXIST";
+                (( FILE_NOT_EXIST_COUNT++ ));
+            
+            fi
+
+        fi
+    
+    done
+
+if [ $FILE_NOT_EXIST_COUNT -gt 0 ]; then
+
+    echo ">>> PROGRAMM EXIT";
     exit 0;
+
 fi
 
 
